@@ -27,14 +27,12 @@ const Header = () => {
   };
 
   return (
-    <header className="shadow-md py-4 w-full bg-white relative">
-      <div className="  px-4 flex justify-between items-center">
-        {/* Logo */}
+    <header className="shadow-md py-4  bg-white relative">
+      <div className="   flex max-w-7xl mx-auto justify-between items-center">
         <Link to="/">
           <div className="text-2xl font-bold">ClothingStore</div>
         </Link>
 
-        {/* Navigation Links for larger screens */}
         <nav className="hidden md:flex space-x-8">
           <Link to="/" className="hover:text-gray-600 text-lg font-semibold">Home</Link>
           <Link to="/shop" className="hover:text-gray-600 text-lg font-semibold">Shop</Link>
@@ -42,7 +40,6 @@ const Header = () => {
           <Link to="/contact" className="hover:text-gray-600 text-lg font-semibold">Contact</Link>
         </nav>
 
-        {/* Authentication and Cart */}
         <div className="hidden md:flex space-x-4">
           {!isAuthenticated ? (
             <Link

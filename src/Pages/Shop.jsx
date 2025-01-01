@@ -11,8 +11,8 @@ const App = () => {
   };
 
   return (
-    <div><Downheader/>
-    <div className="flex flex-col pl-28 md:flex-row  min-h-screen">
+    <div className=''><Downheader/>
+    <div className="flex flex-col max-w-7xl mx-auto md:flex-row  min-h-screen">
       <Categor onCategorySelect={handleCategorySelect} />
       <div className="flex-1 p-6 bg-white">
         <Product selectedCategory={selectedCategory} />

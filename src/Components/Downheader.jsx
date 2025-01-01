@@ -3,8 +3,8 @@ import React from 'react'
  const Downheader=()=> {
     return(
     <>
-    <div className="flex flex-wrap bg-gray-100 justify-around items-center text=[#f9f9f9]">
-        <div className='flex flex-col flex-wrap w-screen pl-36 py-[30px]'>
+    <div className="flex flex-wrap bg-gray-100 justify-around  items-center text=[#f9f9f9]">
+        <div className='flex flex-col flex-wrap max-w-7xl mx-auto w-screen  py-[30px]'>
         <h1 className='flex flex-wrap text-[30px]'>Shop</h1>
         <ul className='flex flex-wrap gap-4'>
             <li>
