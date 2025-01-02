@@ -10,11 +10,15 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const token = localStorage.getItem('access_token');
 
   // Fetch products from the API
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/products/") // Replace with your API endpoint
+    
+    
+    axios.get("http://localhost:8000/products/", {
+      headers: { Authorization: `Bearer ${token}` },
+    })// Replace with your API endpoint
       .then((response) => {
         setProducts(response.data);
       })
@@ -34,6 +38,7 @@ const Home = () => {
 
   return (
     <div className="">
+      
       {/* Banner Section with Slider */}
       <div className="relative bg-gray-50 ">
         <Slider {...sliderSettings}>

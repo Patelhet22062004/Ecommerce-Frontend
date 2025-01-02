@@ -15,8 +15,8 @@ export default function Contact() {
   };
     return (
     <>
-    <div className="flex flex-wrap justify-around items-center text=[#f9f9f9]">
-        <div className='flex flex-wrap w-screen justify-around items-center py-[76px]'>
+      <div className="flex flex-wrap bg-gray-50 justify-around  items-center text=[#f9f9f9]">
+      <div className='flex flex-col flex-wrap max-w-7xl mx-auto w-screen  py-[30px]'>
         <h1 className='flex flex-wrap text-[55px]'>Contact</h1>
         <ul className='flex flex-wrap gap-4'>
             <li>

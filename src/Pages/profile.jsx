@@ -26,6 +26,7 @@ const Profile = () => {
         setProfile(response.data);
         setFormData(response.data);
         setLoading(false);
+        alert("Updated Successfully")
       } catch (err) {
         console.error('Error fetching profile:', err);
         setError('Failed to load profile. Please try again.');
@@ -54,6 +55,7 @@ const Profile = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setProfile(response.data);
+      toas
     } catch (err) {
       console.error('Error updating profile:', err);
       alert('Failed to update profile. Please try again.');
@@ -98,11 +100,11 @@ const Profile = () => {
                 name="username"
                 value={formData.username}
                 onChange={handleInputChange}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full border-gray-300 rounded-md p-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-gray-700 font-medium">
+              <label htmlFor="email" className="block text-gray-700  font-medium">
                 Email
               </label>
               <input
@@ -111,7 +113,7 @@ const Profile = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full border-gray-300 rounded-md p-2 shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div>
@@ -122,9 +124,11 @@ const Profile = () => {
                 type="text"
                 id="password"
                 name="password"
+                required
                 value={formData.password}
+                placeholder='Update Password'
                 onChange={handleInputChange}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full border-gray-300 border-None  p-2 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
             <div className="flex justify-between">

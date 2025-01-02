@@ -13,8 +13,15 @@ const CategorySidebar = ({ onCategorySelect, onFilterChange }) => {
   const [isBrandOpen, setIsBrandOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
+
+
+
+  const token = localStorage.getItem('access_token');
+
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/categories/')
+    axios.get('http://127.0.0.1:8000/categories/', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then(response => {
         setCategories(response.data);
       })
@@ -22,21 +29,6 @@ const CategorySidebar = ({ onCategorySelect, onFilterChange }) => {
         console.error('Error fetching categories:', error);
       });
 
-    axios.get('http://127.0.0.1:8000/brands/')
-      .then(response => {
-        setBrands(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching brands:', error);
-      });
-
-    axios.get('http://127.0.0.1:8000/sizes/')
-      .then(response => {
-        setSizes(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching sizes:', error);
-      });
   }, []);
 
   const handleCategorySelect = (categoryId) => {
@@ -117,9 +109,11 @@ const CategorySidebar = ({ onCategorySelect, onFilterChange }) => {
             className="w-full p-2 mt-2 bg-white border border-gray-300 rounded"
           >
             <option value="">Select Size</option>
-            {sizes.map(size => (
-              <option key={size.id} value={size.name}>{size.name}</option>
-            ))}
+              <option value="0-50">S</option>
+            <option value="50-100">M</option>
+            <option value="100-200">L</option>
+            <option value="200-500">XL</option>
+            <option value="500+">XLL</option>
           </select>
         </div>
       </div>
@@ -135,9 +129,7 @@ const CategorySidebar = ({ onCategorySelect, onFilterChange }) => {
             className="w-full p-2 mt-2 bg-white border border-gray-300 rounded"
           >
             <option value="">Select Brand</option>
-            {brands.map(brand => (
-              <option key={brand.id} value={brand.name}>{brand.name}</option>
-            ))}
+           
           </select>
         </div>
       </div>

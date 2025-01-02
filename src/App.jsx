@@ -11,6 +11,7 @@ import Shop from "./Pages/Shop"
 import Contact from './Pages/Contact';
 import Footer from './Components/Footer';
 import ProductDetail from './Pages/Productdetail';
+import Cart from './Pages/Cart';
 const App = () => {
   return (
 
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/contact" element={<Contact/>} />
         <Route path="/Footer" element={<Footer/>} />
         <Route path="/Detail/:id" element={<ProductDetail/>} />
+        <Route path="/cart" element={<Cart/>} />
 
         {/* Protected Routes */}
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />

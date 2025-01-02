@@ -57,7 +57,7 @@ const Header = () => {
                 <FaUserLarge className="size-5" />
               </Link>
               <Link
-                to="/cart"
+                to="/Cart"
                 className="py-[10px] px-1 rounded"
               >
                 <IoMdCart className="size-6" />

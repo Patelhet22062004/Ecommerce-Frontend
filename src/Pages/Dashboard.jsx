@@ -1,8 +1,33 @@
-import React from 'react';
+import React ,{useState,useEffect} from 'react';
 
 const Dashboard = () => {
-  const user = JSON.parse(localStorage.getItem('user')); // Get user data from localStorage
+    const [user, setFormData] = useState({});
+    const userId=localStorage.getItem('userid')
 
+    const token=localStorage.getItem('access_token')
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!token || !userId) {
+        setError('User not authenticated. Please log in.');
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await axios.get(`http://127.0.0.1:8000/user/profile/${userId}/`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setFormData(response.data);
+      } catch (err) {
+        console.error('Error fetching profile:', err);
+        setError('Failed to load profile. Please try again.');
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [token, userId]);
   return (
     <div className="p-6">
       <h1 className="text-3xl font-bold">Welcome to Your Dashboard, {user.username}!</h1>

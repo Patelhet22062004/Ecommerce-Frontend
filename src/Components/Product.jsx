@@ -4,14 +4,16 @@ import { Link } from 'react-router-dom';
 
 const ProductList = ({ selectedCategory }) => {
   const [products, setProducts] = useState([]);
-
+  const token = localStorage.getItem('access_token');
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const url = selectedCategory
           ? `http://127.0.0.1:8000/products/?category=${selectedCategory}`
           : 'http://127.0.0.1:8000/products/';
-        const response = await axios.get(url);
+        const response = await axios.get(url,{
+          headers: { Authorization: `Bearer ${token}` },
+        });
         console.log(response.data);
         setProducts(response.data);
       } catch (error) {

@@ -22,10 +22,13 @@ const RegisterPage = () => {
         email,
         password,
       });
-
+      if(response.ok){
       setLoading(false);
       alert ('Account Created Successfully')
-      navigate('/login');  // Redirect to login after successful registration
+      navigate('/login');}
+      else{
+        alert("error ")
+      }  // Redirect to login after successful registration
     } catch (err) {
       setLoading(false);
       // Check if the error response has message and handle it
