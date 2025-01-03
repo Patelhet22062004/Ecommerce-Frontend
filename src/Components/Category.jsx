@@ -51,7 +51,7 @@ const CategorySidebar = ({ onCategorySelect, onFilterChange }) => {
   };
   const reset =()=>{
     onCategorySelect(null);
-
+    setIsCategoryOpen(false)
   }
 
   return (

@@ -8,6 +8,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [mobile_number, setmobile] = useState('');
   
   const navigate = useNavigate();
 
@@ -21,13 +22,14 @@ const RegisterPage = () => {
         username,
         email,
         password,
+        mobile_number,
       });
-      if(response.ok){
+      if(response){
       setLoading(false);
       alert ('Account Created Successfully')
       navigate('/login');}
       else{
-        alert("error ")
+        alert("error in creating Account")
       }  // Redirect to login after successful registration
     } catch (err) {
       setLoading(false);
@@ -64,6 +66,15 @@ const RegisterPage = () => {
               className="w-full px-4 py-2 border rounded-md mt-1"
             />
           </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">Phone</label>
+            <input
+              type="number"
+              value={mobile_number}
+              onChange={(e) => setmobile(e.target.value)}
+              required
+              className="w-full px-4 py-2 border rounded-md mt-1"
+            /></div>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">Password</label>
             <input

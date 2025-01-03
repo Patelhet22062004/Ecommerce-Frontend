@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const navigate = useNavigate()
   const token = localStorage.getItem('access_token');
   const userId = localStorage.getItem('userid');
 
@@ -26,7 +26,7 @@ const Profile = () => {
         setProfile(response.data);
         setFormData(response.data);
         setLoading(false);
-        alert("Updated Successfully")
+        // alert("Updated Successfully")
       } catch (err) {
         console.error('Error fetching profile:', err);
         setError('Failed to load profile. Please try again.');
@@ -47,7 +47,6 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsEditing(false);
-
     try {
       const response = await axios.put(
         `http://127.0.0.1:8000/user/profile/${userId}/`,
@@ -55,10 +54,29 @@ const Profile = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setProfile(response.data);
-      toas
+      
     } catch (err) {
       console.error('Error updating profile:', err);
       alert('Failed to update profile. Please try again.');
+    }
+  };
+  const Handledelete = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.delete(
+        `http://127.0.0.1:8000/user/profile/${userId}/`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setIsEditing(false)
+      localStorage.removeItem('access_token')
+      localStorage.removeItem('refresh_token')
+      localStorage.removeItem('user')
+      localStorage.removeItem('userid')
+      navigate('/register')
+      alert("Account Delete Successfull")
+    } catch (err) {
+      console.error('Error Deleting profile:', err);
+      alert('Failed to deleting profile. Please try again.');
     }
   };
 
@@ -86,7 +104,7 @@ const Profile = () => {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 ">
             <div>
               <label
                 htmlFor="username"
@@ -141,11 +159,18 @@ const Profile = () => {
               <button
                 type="button"
                 onClick={toggleEdit}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                className=" bg-gray-50 px-4 py-2  rounded hover:text-white hover:bg-gray-400"
               >
                 Cancel
               </button>
-            </div>
+              </div>
+              <button
+                type="button"
+                onClick={Handledelete}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              >
+                Delete Account
+              </button>
           </form>
         )}
       </div>
