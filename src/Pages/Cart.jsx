@@ -27,10 +27,11 @@ const Cart = () => {
     .catch(error => console.error('Error removing from cart:', error));
   };
 
-  const handleUpdateQuantity = (productId, quantityChange) => {
+  const handleUpdateQuantity = (productId, quantityChange,product_price) => {
     axios.post('http://127.0.0.1:8000/cart/', {
       product_id: productId,
       quantity: quantityChange,
+      total: (product_price * quantityChange)
     }, {
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -46,43 +47,43 @@ const Cart = () => {
   const totalPrice = cart.reduce((total, item) => total + item.product_price * item.quantity, 0);
 
   return (
-    <div className=" shadow-lg mx-auto my-28 py-20 px-20">
+    <div className=" shadow-lg mx-auto my-28 py-20 md:px-20">
       <h1 className="text-2xl font-semibold text-gray-800 mb-6">Your Cart</h1>
       {cart.length === 0 ? (
         <p>Your cart is empty. <Link to="/shop" className="text-blue-500">Go back to shopping</Link></p>
       ) : (
-        <div className='flex gap-10 '>
-          <ul className="space-y-10 md:w-2/3 shadow-sm p-2">
+        <div className='flex gap-10  flex-wrap md:flex-nowrap'>
+          <ul className="space-y-10 md:w-2/3 shadow-sm p-12 pl-14">
             <div className=' flex justify-between '>
-              <div className=' text-lg font-bold mb-4 ml-10'>Product</div>
-              <div className=' text-lg font-bold  mb-4 ml-28'>Quantity</div>
+              <div className=' text-lg font-bold md:mb-4 md:ml-10'>Product</div>
+              <div className=' text-lg font-bold  md:mb-4 md:ml-28'>Quantity</div>
               <div className=' text-lg font-bold  mb-4 mr-3'>price</div>
 
             </div>
             {cart.map(item => (
               <div key={item.product_id} className="flex items-center justify-between border-b pb-4">
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap ">
                   <img 
                     src={'http://127.0.0.1:8000'+item.product_image} 
                     alt={item.product_name} 
-                    className="w-40 rounded-lg hover:opacity-75 object-contain" 
+                    className="md:w-40 w-24 rounded-lg hover:opacity-75 object-contain" 
                   />
-                  <div className="flex flex-col justify-center  md:pl-9 pl-8">
+                  <div className="flex flex-col justify-center  md:pl-9 pl-2">
                     <p className="text-xl font-semibold">{item.product_name}</p>
                     <p className="text-md font-bold text-slate-800">Rs {item.product_price}</p>
                     </div>
                       </div>
-                    <div className="flex items-center ">
+                    <div className="flex items-center mr-12 ">
                       <button
-                        className="px-3 py-1 bg-gray-200 rounded-md"
-                        onClick={() => handleUpdateQuantity(item.product_id, -1)} // Decrease quantity
+                        className="md:px-3 px-1  py-1 bg-gray-200 rounded-md"
+                        onClick={() => handleUpdateQuantity(item.product_id, -1,item.Product_price)} // Decrease quantity
                       >
                         -
                       </button>
-                      <p className="px-4 font-bold">{item.quantity}</p>
+                      <p className="md:px-4 px-1 font-bold">{item.quantity}</p>
                       <button
-                        className="px-3 py-1 bg-gray-200 rounded-md"
-                        onClick={() => handleUpdateQuantity(item.product_id, 1)} // Increase quantity
+                        className="md:px-3 px-1 py-1 bg-gray-200 rounded-md"
+                        onClick={() => handleUpdateQuantity(item.product_id, 1,item.product_price)} // Increase quantity
                       >
                         +
                       </button>
@@ -100,13 +101,13 @@ const Cart = () => {
               </div>
             ))}
            <Link to='/shop'>
-            <button className="hover:bg-black hover:text-white py-2 px-14  my-3 border  bg-white transition duration-300">
+            <button className="hover:bg-black hover:text-white py-2 md:px-14 px-4  my-3 border  bg-white transition duration-300">
               COUNTINUE SHOPPING
             </button>
            </Link>
           </ul>
 
-          <div className=" p-10 mt-2 flex flex-col gap-6 md:w-1/3 h-fit justify-center bg-gray-50 ">
+          <div className=" p-10 mt-2 md:ml-0 ml-20 flex flex-col gap-6 md:w-1/3 h-fit justify-center bg-gray-50 ">
             
             <p className="text-lg font-semibold ">Cart Total</p>
             <div className='flex justify-between'>
@@ -116,9 +117,11 @@ const Cart = () => {
             </div>
 
             
+           <Link to='/checkout'>
             <button className="bg-black text-white py-2 px-20  hover:bg-slate-600 transition duration-300">
               Checkout
             </button>
+           </Link>
           </div>
         </div>
       )}

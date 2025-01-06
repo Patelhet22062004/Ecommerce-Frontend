@@ -36,7 +36,7 @@ function Login() {
   
     return (
         <>
-            <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
+            <div className="relative flex flex-col  items-center justify-center min-h-screen overflow-hidden">
                     <h1 className="text-3xl font-bold text-center pb-12 text-gray-700">My Account</h1>
                 <div className="w-full p-6 bg-white rounded-md max-w-md shadow-md lg:max-w-xl">
                     <form  onSubmit={handleSubmit} className="mt-6">

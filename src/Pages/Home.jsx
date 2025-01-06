@@ -40,7 +40,7 @@ const Home = () => {
     <div className="">
       
       {/* Banner Section with Slider */}
-      <div className="relative bg-gray-50 ">
+      <div className="relative bg-gray-50 overflow-hidden ">
         <Slider {...sliderSettings}>
           {[1, 2].map((slide, index) => (
             <div key={index} className="h-[600px]">

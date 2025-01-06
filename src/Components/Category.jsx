@@ -55,7 +55,7 @@ const CategorySidebar = ({ onCategorySelect, onFilterChange }) => {
   }
 
   return (
-    <div className="w-1/4 p-6 bg-white  rounded-lg h-screen overflow-y-auto">
+    <div className="md:w-1/4 p-6 bg-white  rounded-lg  overflow-y-auto">
       <div className='flex justify-between'>
       <h3 className="text-2xl font-semibold text-gray-700 mb-6">Filters</h3>
       <button onClick={reset} className="text-2xl font-semibold text-gray-700 mb-6"><IoMdRefresh />

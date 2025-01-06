@@ -25,7 +25,7 @@ const ProductList = ({ selectedCategory }) => {
   }, [selectedCategory]);
 
   return (
-    <div className="flex flex-wrap justify-start gap-16 p-8">
+    <div className="flex flex-wrap lg:justify-start justify-center gap-16 p-8">
       {products.length === 0 ? (
         <p>No products available for this category.</p>
       ) : (

@@ -95,7 +95,9 @@ const Profile = () => {
             <h2 className="text-2xl font-semibold text-gray-800 mt-4">
               Username: {formData.username}
             </h2>
-            <p className="text-gray-500">Email:{formData.email}</p>
+            <h2 className="text-gray-500 text-xl">Email:{formData.email}</h2>
+            <h2 className="text-gray-500 text-xl">Mobile:{formData.mobile_number}</h2>
+
             <button
               onClick={toggleEdit}
               className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
@@ -145,6 +147,20 @@ const Profile = () => {
                 required
                 value={formData.password}
                 placeholder='Update Password'
+                onChange={handleInputChange}
+                className="mt-1 block w-full border-gray-300 border-None  p-2 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              />
+            </div>
+            <div>
+              <label htmlFor="mobile" className="block text-gray-700 font-medium">
+                Mobile
+              </label>
+              <input
+                type="number"
+                id="mobile_number"
+                name="mobile_number"
+                required
+                value={formData.mobile_number}
                 onChange={handleInputChange}
                 className="mt-1 block w-full border-gray-300 border-None  p-2 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               />

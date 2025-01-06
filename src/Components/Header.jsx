@@ -28,16 +28,16 @@ const Header = () => {
 
   return (
     <header className="shadow-md py-4  bg-white relative">
-      <div className="   flex max-w-7xl mx-auto justify-between items-center">
+      <div className=" flex max-w-7xl mx-auto justify-between items-center">
         <Link to="/">
           <div className="text-2xl font-bold">ClothingStore</div>
         </Link>
 
         <nav className="hidden md:flex space-x-8">
-          <Link to="/" className="hover:text-gray-600 text-lg font-semibold">Home</Link>
-          <Link to="/shop" className="hover:text-gray-600 text-lg font-semibold">Shop</Link>
-          <Link to="/about" className="hover:text-gray-600 text-lg font-semibold">About</Link>
-          <Link to="/contact" className="hover:text-gray-600 text-lg font-semibold">Contact</Link>
+          <Link to="/" className="hover:border-b-2 hover:border-black text-lg font-semibold">Home</Link>
+          <Link to="/shop" className="hover:border-b-2 hover:border-black text-lg font-semibold">Shop</Link>
+          <Link to="/aboutu" className="hover:border-b-2 hover:border-black text-lg font-semibold">About</Link>
+          <Link to="/contact" className="  hover:border-b-2 hover:border-black  text-lg font-semibold">Contact</Link>
         </nav>
 
         <div className="hidden md:flex space-x-4">
@@ -52,15 +52,15 @@ const Header = () => {
             <>
               <Link
                 to="/profile"
-                className="py-3 px-1 rounded hover:scale-110 ease-in-out transform duration-200"
+                className="py-3 px-1 rounded "
               >
-                <FaUserLarge className="size-5" />
+                <FaUserLarge className="size-5 hover:scale-110 ease-in-out transform duration-200" />
               </Link>
               <Link
                 to="/Cart"
-                className="py-[10px] px-1 rounded"
+                className="py-[10px] px-1 rounded "
               >
-                <IoMdCart className="size-6" />
+                <IoMdCart className="size-6  hover:scale-110 ease-in-out transform duration-200  " />
               </Link>
               <button
                 onClick={handleLogout}
@@ -68,6 +68,11 @@ const Header = () => {
               >
                 Logout
               </button>
+             <Link to='/myorder'><button
+                className="text-gray-800 bg-gray-200 py-2 px-4 rounded text-lg hover:scale-90 ease-in-out transform duration-200"
+              >
+                myorder
+              </button></Link> 
             </>
           )}
         </div>
